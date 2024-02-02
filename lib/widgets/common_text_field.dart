@@ -29,6 +29,12 @@ class CommonTextFied extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "This field is required.";
+            }
+            return null;
+          },
           controller: controller,
           maxLength: maxLength,
           autocorrect: false,

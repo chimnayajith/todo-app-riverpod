@@ -10,11 +10,11 @@ class Task with _$Task {
     required String title,
     required String description,
     required DateTime dueDate,
+    required String priority,
+    required bool isCompleted,
+    required String cardColor,
     required DateTime createdAt,
     required DateTime updatedAt,
-    required bool isCompleted,
-    required String priority,
-    required String cardColor,
   }) = _Task;
 
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);

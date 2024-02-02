@@ -86,18 +86,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     Icons.home,
                     color: currentIndex == 0 ? Colors.amber : Colors.white,
                   ),
-                  selectedIcon: const Icon(
-                    Icons.home,
-                    color: Colors.amber,
-                  ),
                   label: "Home"),
               NavigationDestination(
                   icon: Icon(Icons.calendar_month,
                       color: currentIndex == 1 ? Colors.amber : Colors.white),
-                  selectedIcon: const Icon(
-                    Icons.calendar_month,
-                    color: Colors.amber,
-                  ),
                   label: "Upcoming")
             ],
           ),
