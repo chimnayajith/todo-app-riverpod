@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TaskCard extends StatelessWidget {
-  const TaskCard({super.key});
+  const TaskCard({super.key, this.task});
 
+  final dynamic task;
   @override
   Widget build(BuildContext context) {
+    final priorityColors = {
+      "low": const Color.fromARGB(255, 63, 161, 75),
+      "medium": const Color.fromARGB(255, 253, 140, 0),
+      "high": const Color.fromARGB(255, 220, 0, 0)
+    };
     return Container(
       width: MediaQuery.of(context).size.width * 0.9,
       height: 175,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Color.fromARGB(255, 206, 242, 254)),
+          color: Color(task.cardColor)),
       child: Stack(
         children: [
-          const Positioned(
+          Positioned(
               top: 20,
               left: 20,
-              child: Text("Finance App Landing Page",
-                  style: TextStyle(
+              child: Text(task.title,
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 24,
                       color: Color.fromARGB(255, 27, 28, 30)))),
@@ -27,7 +34,7 @@ class TaskCard extends StatelessWidget {
             width: double.maxFinite,
             child: Row(
               children: [
-                Text(
+                const Text(
                   "Priority : ",
                   style: TextStyle(
                       color: Color.fromARGB(255, 27, 28, 30),
@@ -39,9 +46,9 @@ class TaskCard extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.red),
-                  child: const Text(
-                    "High",
+                      color: priorityColors[task.priority]),
+                  child: Text(
+                    "${task.priority[0].toUpperCase()}${task.priority.substring(1).toLowerCase()}",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -54,7 +61,7 @@ class TaskCard extends StatelessWidget {
             width: double.maxFinite,
             child: Row(
               children: [
-                Text(
+                const Text(
                   "Due date : ",
                   style: TextStyle(
                       color: Color.fromARGB(255, 27, 28, 30),
@@ -62,8 +69,8 @@ class TaskCard extends StatelessWidget {
                       fontSize: 16),
                 ),
                 Text(
-                  "Jan 30",
-                  style: TextStyle(
+                  DateFormat('dd MMM').format(task.dueDate),
+                  style: const TextStyle(
                       color: Color.fromARGB(255, 27, 28, 30),
                       fontWeight: FontWeight.bold,
                       fontSize: 16),
@@ -71,42 +78,11 @@ class TaskCard extends StatelessWidget {
               ],
             ),
           ),
-          // Positioned(
-          //     bottom: 20,
-          //     left: 20,
-          //     child: Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //       children: [
-          //         Container(
-          //           // height: 30,
-          //           // width: 50,
-          //           padding: const EdgeInsets.symmetric(
-          //               horizontal: 10, vertical: 2),
-          //           decoration: BoxDecoration(
-          //               borderRadius: BorderRadius.circular(20),
-          //               color: Colors.red),
-          //           child: const Text(
-          //             "High",
-          //             style: TextStyle(fontWeight: FontWeight.bold),
-          //           ),
-          //         ),
-          //         SizedBox(
-          //           width: 170,
-          //         ),
-          //         const Text(
-          //           "Due Date : Jan 30",
-          //           style: TextStyle(
-          //             color: Colors.black87,
-          //             fontWeight: FontWeight.bold,
-          //           ),
-          //         )
-          //       ],
-          //     )),
           Positioned(
               top: 10,
               right: 5,
               child: IconButton(
-                icon: Icon(Icons.more_vert,
+                icon: const Icon(Icons.more_vert,
                     color: Color.fromARGB(255, 27, 28, 30)),
                 onPressed: () {},
               ))

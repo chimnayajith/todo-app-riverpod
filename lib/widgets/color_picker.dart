@@ -7,8 +7,8 @@ class ColorPicker extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Color selectedColor = ref.watch(colorProvider);
-    Widget buildColorButton(Color color) {
+    int selectedColor = ref.watch(colorProvider);
+    Widget buildColorButton(int color) {
       return GestureDetector(
         onTap: () {
           ref.read(colorProvider.notifier).state = color;
@@ -18,7 +18,7 @@ class ColorPicker extends ConsumerWidget {
           height: 30,
           decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: color,
+              color: Color(color),
               border: Border.all(
                 strokeAlign: BorderSide.strokeAlignCenter,
                 color: selectedColor == color
@@ -37,12 +37,11 @@ class ColorPicker extends ConsumerWidget {
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         const SizedBox(width: 10),
-        buildColorButton(const Color.fromARGB(255, 206, 242, 254)),
+        buildColorButton(0xFFCEF2FE),
         const SizedBox(width: 10),
-        buildColorButton(const Color.fromARGB(255, 255, 226, 196)),
+        buildColorButton(0xFFFFE2C4),
         const SizedBox(width: 10),
-        buildColorButton(const Color.fromARGB(255, 255, 202, 208)),
-        // const SizedBox(width: 10),
+        buildColorButton(0xFFFFCAD0),
       ],
     );
   }

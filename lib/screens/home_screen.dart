@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
               changeCurrentIndex(ref, value);
             },
             controller: pageController,
-            children: const [TaskList(), UpcomingScreen()],
+            children: [TaskList(), UpcomingScreen()],
           ),
           floatingActionButton: FloatingActionButton(
             shape: const CircleBorder(side: BorderSide.none),

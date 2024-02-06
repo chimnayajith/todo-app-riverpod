@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:todo_app/models/task.dart';
+import 'package:todo_app/repositories/task_repository.dart';
 
 final currentIndexProvider = StateProvider<int>((ref) {
   return 0;
@@ -13,6 +14,12 @@ final priorityProvider = AutoDisposeStateProvider<String>((ref) {
   return "low";
 });
 
-final colorProvider = AutoDisposeStateProvider<Color>((ref) {
-  return Color.fromARGB(255, 206, 242, 254);
+final colorProvider = AutoDisposeStateProvider<int>((ref) {
+  return 0xFFCEF2FE;
+});
+
+final allTasksProvider = FutureProvider<List<Task>>((ref) async {
+  TaskRepository taskRepository = TaskRepository();
+  List<Task> todo = await taskRepository.getAllTasks();
+  return todo;
 });
